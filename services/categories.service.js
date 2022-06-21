@@ -1,5 +1,6 @@
 const { notFound } = require("@hapi/boom");
 const faker = require("faker");
+const { models } = require('./../libs/sequelize')
 
 class CategoriesService {
 
@@ -30,20 +31,16 @@ class CategoriesService {
   }
 
   async find() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.categories);
-      }, 2000);
-    })
-    return this.categories;
+    const rta = await models.Category.findAll();
+    return rta;
   }
 
   async findOne(id) {
     const found = this.categories.find(item => item.id == id);
-    if(!found){
+    if (!found) {
       throw boom.notFound('Category not found');
     }
-      return found;
+    return found;
 
   }
 
@@ -51,7 +48,8 @@ class CategoriesService {
     const index = this.categories.findIndex(item => item.id == id);
     let easyCategory = this.categories.find(item => item.id == id);
     if (index === -1) {
-      throw boom.notFound('Category not found');    }
+      throw boom.notFound('Category not found');
+    }
     console.table(easyCategory);
     this.categories[index] = {
       ...easyCategory,

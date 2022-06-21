@@ -10,7 +10,7 @@ function errorHandler(err, req, res, next) {
   res.status(500).json({
     message: err.message,
     stack: err.stack
-  })
+  });
 }
 
 function boomErrorHandler(err, req, res, next) {
@@ -24,4 +24,4 @@ function boomErrorHandler(err, req, res, next) {
 
 
 
-module.exports = { logErrors, errorHandler, boomErrorHandler }
+module.exports = { logErrors, errorHandler, boomErrorHandler };

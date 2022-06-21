@@ -1,4 +1,5 @@
 const faker = require('faker');
+const { models } = require('./../libs/sequelize');
 
 class ShopOrdersService {
 
@@ -51,7 +52,8 @@ class ShopOrdersService {
   }
 
   async find() {
-    return this.shopOrders;
+    const rta = await models.ShopOrder.findAll();
+    return rta;
   }
 
   async findOne(id) {

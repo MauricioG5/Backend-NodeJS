@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes');
-
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler')
 console.log('My hermosa aplicacion');
+
 const app = express();
 const port = 3000;
 app.use(express.json());
@@ -14,7 +14,7 @@ const options = {
     if (whiteList.includes(origin) || !origin) {
       callback(null, true);
     } else {
-      callback(new Error('No permitido'))
+    callback(new Error('No permitido'))
     }
   }
 }
